@@ -6,7 +6,7 @@
 pip3 install roboticstoolbox-python
 git clone git@github.com:petrvancjr/franka_easy_ik.git
 cd franka_easy_ik
-pip install .
+pip3 install .
 ```
 
 ### Usage
