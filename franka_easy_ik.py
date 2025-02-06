@@ -32,7 +32,11 @@ class FrankaEasyIK():
         q = deepcopy(q)
         q[1], q[2], q[3], q[0] = q[0], q[1], q[2], q[3] 
 
-        q1, succ, reason, iter, res = self.robot.ikine_LM(SE3.Trans(*p) * UnitQuaternion(np.array(q)).SE3(), q0=self.last_q)
+        sol = self.robot.ikine_LM(SE3.Trans(*p) * UnitQuaternion(np.array(q)).SE3(), q0=self.last_q)
+        q1 = sol.q
+        succ = sol.success
+        reason = sol.reason
+        
         if not succ:
             raise Exception(f"IK not found because: {reason}")
         if verbose:
